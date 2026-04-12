@@ -44,3 +44,7 @@ UpgradeLog.htm
 # Folders #
 ###########
 # docs/refpages/*
+
+# Xcode build output
+source/xcproj/build/
+
