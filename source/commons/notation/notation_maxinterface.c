@@ -5578,7 +5578,7 @@ t_llll *get_groups_for_dump_as_llll(t_notation_obj *r_ob, char mode, double star
 
 double get_marker_ux_position(t_notation_obj *r_ob, t_marker *marker)
 {
-    if (marker->attach_to == k_MARKER_ATTACH_TO_MEASURE) {
+    if (marker->attach_to == k_MARKER_ATTACH_TO_MEASURE && r_ob->timepoint_to_unscaled_xposition) {
         t_timepoint tp = measure_attached_marker_to_timepoint(r_ob, marker);
         return (r_ob->timepoint_to_unscaled_xposition)(r_ob, tp, CONST_MARKERS_ON_FIRST_MEASURE_CHORDS ? k_PARSETIMEPOINT_FLAG_ZEROPIMISFIRSTCHORD : k_PARSETIMEPOINT_FLAG_NONE);
     } else {
@@ -5589,7 +5589,7 @@ double get_marker_ux_position(t_notation_obj *r_ob, t_marker *marker)
 
 double get_marker_ms_position(t_notation_obj *r_ob, t_marker *marker)
 {
-    if (marker->attach_to == k_MARKER_ATTACH_TO_MEASURE) {
+    if (marker->attach_to == k_MARKER_ATTACH_TO_MEASURE && r_ob->timepoint_to_unscaled_xposition) {
         return unscaled_xposition_to_ms(r_ob, get_marker_ux_position(r_ob, marker), 1);
     } else {
         return marker->position_ms;
